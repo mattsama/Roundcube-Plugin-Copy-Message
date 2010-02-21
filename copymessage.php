@@ -16,7 +16,7 @@ class copymessage extends rcube_plugin
 	function init()
 	{
 		$rcmail = rcmail::get_instance();
-		if ($rcmail->task == 'mail' && ($rcmail->action == '' || $rcmail->action == 'show') && !empty($rcmail->user->ID))
+		if ($rcmail->action == '')
 			$this->add_hook('render_mailboxlist', array($this, 'show_copy_contextmenu'));
 
 		$this->register_action('plugin.copymessage', array($this, 'copy_message'));
@@ -131,7 +131,7 @@ class copymessage extends rcube_plugin
 		$from_mbox = $from_mbox ? $imap->mod_mailbox($from_mbox) : $imap->mailbox;
 
 		// make sure mailbox exists
-		if ($to_mbox != 'INBOX' && !in_array($to_mbox, $imap->list_mailboxes()))
+		if ($to_mbox != 'INBOX' && !in_array($tbox, $imap->list_mailboxes()))
 		{
 			if (in_array($tbox, $imap->default_folders))
 				$imap->create_mailbox($tbox, TRUE);

@@ -8,7 +8,7 @@ function rcmail_copyto() {
 	var uids = rcmail.env.uid ? rcmail.env.uid : rcmail.message_list.get_selection().join(',');
 
 	rcmail.set_busy(true, 'copymessage.copyingmessage');
-	rcmail.http_post('plugin.copymessage', '_uid='+uids+'&_target_mbox='+urlencode(rcmail.env.rcm_destfolder)+'&_from='+urlencode(rcmail.env.mailbox), true);
+	rcmail.http_post('plugin.copymessage.copy', '_uid='+uids+'&_target_mbox='+urlencode(rcmail.env.rcm_destfolder)+'&_from='+urlencode(rcmail.env.mailbox), true);
 }
 
 $(document).ready(function(){

@@ -19,7 +19,7 @@ class copymessage extends rcube_plugin
 		if ($rcmail->action == '')
 			$this->add_hook('render_mailboxlist', array($this, 'show_copy_contextmenu'));
 
-		$this->register_action('plugin.copymessage', array($this, 'copy_message'));
+		$this->register_action('plugin.copymessage.copy', array($this, 'copy_message'));
 	}
 
 	public function show_copy_contextmenu($args)

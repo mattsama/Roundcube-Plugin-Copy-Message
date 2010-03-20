@@ -5,7 +5,7 @@
  *
  * Plugin to allow message to be copied to different folders
  *
- * @version 0.2
+ * @version 1.0
  * @author Philip Weir
  * @url http://roundcube.net/plugins/copymessage
  */
@@ -18,8 +18,6 @@ class copymessage extends rcube_plugin
 		$rcmail = rcmail::get_instance();
 		if ($rcmail->action == '')
 			$this->add_hook('render_mailboxlist', array($this, 'show_copy_contextmenu'));
-
-		$this->register_action('plugin.copymessage.copy', array($this, 'copy_message'));
 	}
 
 	public function show_copy_contextmenu($args)
@@ -29,36 +27,18 @@ class copymessage extends rcube_plugin
 		$this->api->output->add_label('copymessage.copyingmessage');
 		$this->include_script('copymessage.js');
 
-		$li = html::tag('li', array('class' => 'submenu copyto'), Q($this->gettext('copyto')) . $this->_gen_folder_list($args['list'], '#copyto'));
+		$li = html::tag('li', array('class' => 'submenu copyto'), Q($this->gettext('copyto')) . $this->_gen_folder_list($args['list'], '#copy'));
 		$out .= html::tag('ul', array('id' => 'rcmContextCopy'), $li);
 		$this->api->output->add_footer(html::div(array('style' => 'display: none;'), $out));
 	}
 
-	public function copy_message()
-	{
-		$this->add_texts('localization/');
-
-		$uids = get_input_value('_uid', RCUBE_INPUT_POST);
-		$mbox = get_input_value('_from', RCUBE_INPUT_POST);
-		$target = get_input_value('_target_mbox', RCUBE_INPUT_POST);
-
-		$copied = $this->_copy_message($uids, $target, $mbox);
-
-		if (!$copied) {
-	        // send error message
-			$this->api->output->command('display_message', $this->gettext('errorcopying'), 'error');
-	        $this->api->output->send();
-    	}
-	}
-
 	// based on rcmail_render_folder_tree_html()
-	private function _gen_folder_list($arrFolders, $command, $nestLevel = 0) {
+	private function _gen_folder_list($arrFolders, $command, $nestLevel = 0, &$folderTotal = 0) {
 		$rcmail = rcmail::get_instance();
 
 		$maxlength = 35;
 		$realnames = false;
 
-		$idx = 0;
 		$out = '';
 		foreach ($arrFolders as $key => $folder) {
 			$title = null;
@@ -104,53 +84,23 @@ class copymessage extends rcube_plugin
 			$out .= html::tag('li', array('class' => join(' ', $classes)), html::a(array('href' => $command, 'onclick' => "rcm_set_dest_folder('" . JQ($folder['id']) ."')", 'class' => 'active', 'title' => $title), str_repeat('&nbsp;&nbsp;', $nestLevel) . Q($foldername)));
 
 			if (!empty($folder['folders']))
-				$out .= $this->_gen_folder_list($folder['folders'], $command, $nestLevel+1);
+				$out .= $this->_gen_folder_list($folder['folders'], $command, $nestLevel+1, $folderTotal);
 
-			$idx++;
+			$folderTotal++;
 		}
 
 		if ($nestLevel == 0) {
-			if ($idx > 5) {
+			if ($folderTotal > 5) {
 				$out = html::tag('ul', array('class' => 'toolbarmenu folders scrollable'), $out);
 				$out = html::tag('div', array('class' => 'scroll_up_pas'), '') . $out . html::tag('div', array('class' => 'scroll_down_act'), '');
+				$out = html::tag('div', array('class' => 'popupmenu'), $out);
 			}
 			else {
-				$out = html::tag('ul', array('class' => 'toolbarmenu folders'), $out);
+				$out = html::tag('ul', array('class' => 'popupmenu toolbarmenu folders'), $out);
 			}
 		}
 
 		return $out;
-	}
-
-	private function _copy_message($uids, $to_mbox, $from_mbox='') {
-		$imap = rcmail::get_instance()->imap;
-
-		$fbox = $from_mbox;
-		$tbox = $to_mbox;
-		$to_mbox = $imap->mod_mailbox($to_mbox);
-		$from_mbox = $from_mbox ? $imap->mod_mailbox($from_mbox) : $imap->mailbox;
-
-		// make sure mailbox exists
-		if ($to_mbox != 'INBOX' && !in_array($tbox, $imap->list_mailboxes()))
-		{
-			if (in_array($tbox, $imap->default_folders))
-				$imap->create_mailbox($tbox, TRUE);
-			else
-				return FALSE;
-		}
-
-		// convert the list of uids to array
-		$a_uids = is_string($uids) ? explode(',', $uids) : (is_array($uids) ? $uids : NULL);
-
-		// exit if no message uids are specified
-		if (!is_array($a_uids) || empty($a_uids))
-			return false;
-
-		// copy messages
-		$iil_copy = iil_C_Copy($imap->conn, join(',', $a_uids), $from_mbox, $to_mbox);
-		$copied = !($iil_copy === false || $iil_copy < 0);
-
-		return $copied;
 	}
 }
 

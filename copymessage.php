@@ -7,7 +7,6 @@
  *
  * @version 1.0
  * @author Philip Weir
- * @url http://roundcube.net/plugins/copymessage
  */
 class copymessage extends rcube_plugin
 {

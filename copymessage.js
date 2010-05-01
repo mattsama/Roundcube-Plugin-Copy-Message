@@ -1,3 +1,7 @@
+/**
+ * CopyMessage plugin script
+ */
+
 function rcmail_copyto(command, el, pos) {
 	if (rcmail.env.rcm_destfolder == rcmail.env.mailbox)
 		return;

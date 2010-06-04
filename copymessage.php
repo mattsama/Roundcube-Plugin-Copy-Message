@@ -32,7 +32,8 @@ class copymessage extends rcube_plugin
 	}
 
 	// based on rcmail_render_folder_tree_html()
-	private function _gen_folder_list($arrFolders, $command, $nestLevel = 0, &$folderTotal = 0) {
+	private function _gen_folder_list($arrFolders, $command, $nestLevel = 0, &$folderTotal = 0)
+	{
 		$rcmail = rcmail::get_instance();
 
 		$maxlength = 35;

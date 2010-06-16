@@ -2,6 +2,10 @@ Roundcube Webmail CopyMessage
 =============================
 This plugin adds a copy message option to the context menu, allowing messages to be copied to another folder.
 
+Requirements
+============
+* RoundCube ContextMenu plugin
+
 Install
 =======
 * Place this plugin folder into plugins directory of RoundCube

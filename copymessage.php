@@ -6,6 +6,7 @@
  * Plugin to allow message to be copied to different folders
  *
  * @version 1.0
+ * @requires ContextMenu plugin
  * @author Philip Weir
  */
 class copymessage extends rcube_plugin

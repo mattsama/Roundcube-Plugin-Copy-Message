@@ -5,7 +5,7 @@
  *
  * Plugin to allow message to be copied to different folders
  *
- * @version 1.0
+ * @version 1.1
  * @requires ContextMenu plugin
  * @author Philip Weir
  */
@@ -15,6 +15,9 @@ class copymessage extends rcube_plugin
 
 	function init()
 	{
+		// load required plugin
+		$this->require_plugin('contextmenu');
+
 		$rcmail = rcmail::get_instance();
 		if ($rcmail->action == '')
 			$this->add_hook('render_mailboxlist', array($this, 'show_copy_contextmenu'));

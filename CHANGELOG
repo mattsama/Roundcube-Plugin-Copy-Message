@@ -1,6 +1,10 @@
 Roundcube Webmail CopyMessage
 =============================
 
+2011 01 18
+==========
+ * Add required plugin code (r4424)
+
 2010 03 20
 ==========
  * Copy function in core after r3385

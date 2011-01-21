@@ -1,8 +1,8 @@
 <?php
-/* Author: Lennard Warnaar */
+/* Author: Wouter Kevenaar */
 
 $labels = array();
-$labels['copyto'] = 'Kopieer naar...';
+$labels['copyto'] = 'Kopiëren naar...';
 
 $messages = array();
 

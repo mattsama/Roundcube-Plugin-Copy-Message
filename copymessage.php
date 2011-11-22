@@ -5,7 +5,7 @@
  *
  * Plugin to allow message to be copied to different folders
  *
- * @version 1.1
+ * @version @package_version@
  * @requires ContextMenu plugin
  * @author Philip Weir
  */

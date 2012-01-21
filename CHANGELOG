@@ -1,6 +1,10 @@
 Roundcube Webmail CopyMessage
 =============================
 
+2012 01 21
+==========
+ * Add inital support for Larry
+
 2011 01 18
 ==========
  * Add required plugin code (r4424)

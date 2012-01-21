@@ -30,7 +30,7 @@ class copymessage extends rcube_plugin
 		$this->api->output->add_label('copymessage.copyingmessage');
 		$this->include_script('copymessage.js');
 
-		$li = html::tag('li', array('class' => 'submenu copyto'), Q($this->gettext('copyto')) . $this->_gen_folder_list($args['list'], '#copy'));
+		$li = html::tag('li', array('class' => 'submenu copyto'), rcube_ui::Q($this->gettext('copyto')) . $this->_gen_folder_list($args['list'], '#copy'));
 		$out .= html::tag('ul', array('id' => 'rcmContextCopy'), $li);
 		$this->api->output->add_footer(html::div(array('style' => 'display: none;'), $out));
 	}
@@ -47,7 +47,7 @@ class copymessage extends rcube_plugin
 		foreach ($arrFolders as $key => $folder) {
 			$title = null;
 
-			if (($folder_class = rcmail_folder_classname($folder['id'])) && !$realnames) {
+			if (($folder_class = rcube_ui::folder_classname($folder['id'])) && !$realnames) {
 				$foldername = $rcmail->gettext($folder_class);
 			}
 			else {
@@ -85,7 +85,7 @@ class copymessage extends rcube_plugin
 			if ($folder['virtual'])
 				$classes[] = 'virtual';
 
-			$out .= html::tag('li', array('class' => join(' ', $classes)), html::a(array('href' => $command, 'onclick' => "rcm_set_dest_folder('" . JQ($folder['id']) ."')", 'class' => 'active', 'title' => $title), str_repeat('&nbsp;&nbsp;', $nestLevel) . Q($foldername)));
+			$out .= html::tag('li', array('class' => join(' ', $classes)), html::a(array('href' => $command, 'onclick' => "rcm_set_dest_folder('" . rcube_ui::Jrcube_ui::Q($folder['id']) ."')", 'class' => 'active', 'title' => $title), str_repeat('&nbsp;&nbsp;', $nestLevel) . rcube_ui::Q($foldername)));
 
 			if (!empty($folder['folders']))
 				$out .= $this->_gen_folder_list($folder['folders'], $command, $nestLevel+1, $folderTotal);

@@ -4,7 +4,7 @@
 	http://pear.php.net/dtd/package-2.0
 	http://pear.php.net/dtd/package-2.0.xsd">
 	<name>copymessage</name>
-	<channel>pear.roundcube.net</channel>
+	<uri>http://github.com/JohnDoh/Roundcube-Plugin-Copy-Message/</uri>
 	<summary>Adds a copy message option to the context menu</summary>
 	<description>Adds a copy message option to the context menu, allowing messages to be copied to another folder.</description>
 	<lead>
@@ -13,17 +13,17 @@
 		<email>roundcube@tehinterweb.co.uk</email>
 		<active>yes</active>
 	</lead>
-	<date>2012-01-15</date>
-	<time>11:36:43</time>
+	<date>2012-01-22</date>
+	<time>10:42:53</time>
 	<version>
-		<release>1.1</release>
-		<api>1.1</api>
+		<release>1.2</release>
+		<api>1.2</api>
 	</version>
 	<stability>
 		<release>stable</release>
 		<api>stable</api>
 	</stability>
-	<license uri="http://www.gnu.org/licenses/gpl-3.0.html">GNU GPLv3</license>
+	<license uri="http://www.gnu.org/licenses/gpl.html">GNU GPLv3+</license>
 	<notes>Repo only</notes>
 	<contents>
 		<dir baseinstalldir="/" name="/">
@@ -68,8 +68,8 @@
 			</pearinstaller>
 			<package>
 				<name>contextmenu</name>
-				<channel>pear.roundcube.net</channel>
-				<min>1.8</min>
+				<uri>http://github.com/JohnDoh/Roundcube-Plugin-Context-Menu/</uri>
+				<min>1.9</min>
 			</package>
 		</required>
 	</dependencies>

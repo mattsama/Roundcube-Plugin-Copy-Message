@@ -18,14 +18,14 @@ class copymessage extends rcube_plugin
 		// load required plugin
 		$this->require_plugin('contextmenu');
 
-		$rcmail = rcmail::get_instance();
+		$rcmail = rcube::get_instance();
 		if ($rcmail->action == '')
 			$this->add_hook('render_mailboxlist', array($this, 'show_copy_contextmenu'));
 	}
 
 	public function show_copy_contextmenu($args)
 	{
-		$rcmail = rcmail::get_instance();
+		$rcmail = rcube::get_instance();
 		$this->add_texts('localization/');
 		$this->api->output->add_label('copymessage.copyingmessage');
 		$this->include_script('copymessage.js');
@@ -38,7 +38,7 @@ class copymessage extends rcube_plugin
 	// based on rcube_ui::render_folder_tree_html()
 	private function _gen_folder_list($arrFolders, $command, $nestLevel = 0, &$folderTotal = 0)
 	{
-		$rcmail = rcmail::get_instance();
+		$rcmail = rcube::get_instance();
 
 		$maxlength = 35;
 		$realnames = false;

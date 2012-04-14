@@ -1,6 +1,10 @@
 Roundcube Webmail CopyMessage
 =============================
 
+2012 04 14
+==========
+ * Update for Roundcube framework
+ 
 2012 01 21
 ==========
  * Add inital support for Larry

@@ -35,7 +35,7 @@ class copymessage extends rcube_plugin
 		$this->api->output->add_footer(html::div(array('style' => 'display: none;'), $out));
 	}
 
-	// based on rcube_utils::render_folder_tree_html()
+	// based on rcmail->render_folder_tree_html()
 	private function _gen_folder_list($arrFolders, $command, $nestLevel = 0, &$folderTotal = 0)
 	{
 		$rcmail = rcube::get_instance();

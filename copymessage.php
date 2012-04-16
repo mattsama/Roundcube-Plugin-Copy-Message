@@ -30,12 +30,12 @@ class copymessage extends rcube_plugin
 		$this->api->output->add_label('copymessage.copyingmessage');
 		$this->include_script('copymessage.js');
 
-		$li = html::tag('li', array('class' => 'submenu copyto'), html::span(null, rcube_ui::Q($this->gettext('copyto'))) . $this->_gen_folder_list($args['list'], '#copy'));
+		$li = html::tag('li', array('class' => 'submenu copyto'), html::span(null, rcmail::Q($this->gettext('copyto'))) . $this->_gen_folder_list($args['list'], '#copy'));
 		$out .= html::tag('ul', array('id' => 'rcmContextCopy'), $li);
 		$this->api->output->add_footer(html::div(array('style' => 'display: none;'), $out));
 	}
 
-	// based on rcube_ui::render_folder_tree_html()
+	// based on rcube_utils::render_folder_tree_html()
 	private function _gen_folder_list($arrFolders, $command, $nestLevel = 0, &$folderTotal = 0)
 	{
 		$rcmail = rcube::get_instance();
@@ -47,7 +47,7 @@ class copymessage extends rcube_plugin
 		foreach ($arrFolders as $key => $folder) {
 			$title = null;
 
-			if (($folder_class = rcube_ui::folder_classname($folder['id'])) && !$realnames) {
+			if (($folder_class = $rcmail->folder_classname($folder['id'])) && !$realnames) {
 				$foldername = $rcmail->gettext($folder_class);
 			}
 			else {
@@ -88,7 +88,7 @@ class copymessage extends rcube_plugin
 			if ($nestLevel > 0)
 				$classes[] = 'subfolder';
 
-			$out .= html::tag('li', array('class' => join(' ', $classes)), html::a(array('href' => $command, 'onclick' => "rcm_set_dest_folder('" . rcube_ui::JQ($folder['id']) ."')", 'class' => 'active', 'title' => $title), html::span(null, str_repeat('&nbsp;&nbsp;', $nestLevel) . rcube_ui::Q($foldername))));
+			$out .= html::tag('li', array('class' => join(' ', $classes)), html::a(array('href' => $command, 'onclick' => "rcm_set_dest_folder('" . rcmail::JQ($folder['id']) ."')", 'class' => 'active', 'title' => $title), html::span(null, str_repeat('&nbsp;&nbsp;', $nestLevel) . rcmail::Q($foldername))));
 
 			if (!empty($folder['folders']))
 				$out .= $this->_gen_folder_list($folder['folders'], $command, $nestLevel+1, $folderTotal);

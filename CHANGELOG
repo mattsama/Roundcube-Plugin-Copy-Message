@@ -1,35 +1,22 @@
 Roundcube Webmail CopyMessage
 =============================
 
-2012 04 16
-==========
  * rcube_ui > rcube_utils (r6091)
-
-2012 04 14
-==========
  * Update for Roundcube framework
 
-2012 01 21
-==========
- * Add inital support for Larry
+Version 1.2 (2012-04-14, rc-0.8)
+=================================================
+ * Versoin ready for rc-0.8
 
-2011 01 18
-==========
+Version 1.1 (2012-01-22, rc-0.8)
+=================================================
+ * Add inital support for Larry
  * Add required plugin code (r4424)
 
-2010 03 20
-==========
+Version 1.0 (2011-01-18, rc-0.7)
+=================================================
  * Copy function in core after r3385
-
-2010 02 21
-==========
  * Update after r3258
  * Better action name
-
-2010 01 03
-==========
  * Add de_*
-
-2009 12 19
-==========
  * First version

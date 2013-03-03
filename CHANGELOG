@@ -1,6 +1,8 @@
 Roundcube Webmail CopyMessage
 =============================
 
+Version 1.3 (2013-03-03, rc-0.9)
+=================================================
  * rcube_ui > rcube_utils (r6091)
  * Update for Roundcube framework
 

@@ -1,6 +1,10 @@
 Roundcube Webmail CopyMessage
 =============================
 
+Version 1.4 (2013-05-193, rc-1.0)
+=================================================
+ **** code branching/tagging no longer sync'd to roundcube versions ****
+
 Version 1.3 (2013-03-03, rc-0.9)
 =================================================
  * rcube_ui > rcube_utils (r6091)

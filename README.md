@@ -19,7 +19,7 @@ folder for details on the skin license.
 Install
 -------
 * Place this plugin folder into plugins directory of Roundcube
-* Add copymessage to $rcmail_config['plugins'] in your Roundcube config
+* Add copymessage to $config['plugins'] in your Roundcube config
 
 **NB:** When downloading the plugin from GitHub you will need to create a
 directory called copymessage and place the files in there, ignoring the root

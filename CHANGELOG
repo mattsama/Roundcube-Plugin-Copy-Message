@@ -1,9 +1,11 @@
 Roundcube Webmail CopyMessage
 =============================
 
+Version 1.5 (2013-12-01, rc-1.0)
+=================================================
  * Update config file var names to match core
 
-Version 1.4 (2013-05-193, rc-1.0)
+Version 1.4 (2013-05-19, rc-1.0)
 =================================================
  **** code branching/tagging no longer sync'd to roundcube versions ****
 

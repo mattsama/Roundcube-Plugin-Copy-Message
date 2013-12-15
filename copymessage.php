@@ -26,7 +26,6 @@ class copymessage extends rcube_plugin
 	public function show_copy_contextmenu($args)
 	{
 		$rcmail = rcube::get_instance();
-		$this->add_texts('localization/');
 		$this->api->output->add_label('copymessage.copyingmessage');
 		$this->include_script('copymessage.js');
 

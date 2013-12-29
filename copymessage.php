@@ -26,7 +26,6 @@ class copymessage extends rcube_plugin
 	public function show_copy_contextmenu($args)
 	{
 		$rcmail = rcube::get_instance();
-		$this->api->output->add_label('copymessage.copyingmessage');
 		$this->include_script('copymessage.js');
 
 		$li = html::tag('li', array('class' => 'submenu copyto'), html::span(null, rcmail::Q($this->gettext('copyto'))) . $this->_gen_folder_list($args['list'], '#copy'));
@@ -87,7 +86,7 @@ class copymessage extends rcube_plugin
 			if ($nestLevel > 0)
 				$classes[] = 'subfolder';
 
-			$out .= html::tag('li', array('class' => join(' ', $classes)), html::a(array('href' => $command, 'onclick' => "rcm_set_dest_folder('" . rcmail::JQ($folder['id']) ."')", 'class' => 'active', 'title' => $title), html::span(null, str_repeat('&nbsp;&nbsp;', $nestLevel) . rcmail::Q($foldername))));
+			$out .= html::tag('li', array('class' => join(' ', $classes)), html::a(array('href' => $command, 'onclick' => "rcm_set_dest_folder('" . rcmail::JQ($folder['id']) ."')", 'class' => 'active', 'title' => $title, 'style' => 'padding-left: '. $nestLevel*16 .'px'), html::span(null, rcmail::Q($foldername))));
 
 			if (!empty($folder['folders']))
 				$out .= $this->_gen_folder_list($folder['folders'], $command, $nestLevel+1, $folderTotal);
@@ -96,10 +95,8 @@ class copymessage extends rcube_plugin
 		}
 
 		if ($nestLevel == 0) {
-			if ($folderTotal > 5) {
-				$out = html::tag('ul', array('class' => 'toolbarmenu folders scrollable'), $out);
-				$out = html::tag('div', array('class' => 'scroll_up_pas'), '') . $out . html::tag('div', array('class' => 'scroll_down_act'), '');
-				$out = html::tag('div', array('class' => 'popupmenu'), $out);
+			if ($folderTotal > 10) {
+				$out = html::tag('ul', array('class' => 'popupmenu toolbarmenu folders scrollmenu'), $out);
 			}
 			else {
 				$out = html::tag('ul', array('class' => 'popupmenu toolbarmenu folders'), $out);
